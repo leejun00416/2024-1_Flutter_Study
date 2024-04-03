@@ -1,0 +1,547 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+
+
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+
+class _MyAppState extends State<MyApp> {
+
+  bool _isFavorite = false;
+  int _isFavoriteCounter = 3;
+  bool _isHomeBorder = true;
+  bool _isArticleBorder = false;
+  bool _isWhereBorder = false;
+  bool _isQuestionBorder = false;
+  bool _isPersonBorder = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Container(
+            margin: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(1.0),
+            child: Row(
+              children: [
+                Text(
+                  "서초동",
+                  style: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                IconButton(onPressed: (){}, icon: Icon(Icons.expand_more), color: Colors.black,)
+              ],
+            ),
+          ),
+          actions: [
+            IconButton(onPressed: (){}, icon: Icon(Icons.account_circle_outlined), color: Colors.black, iconSize: 40,),
+            IconButton(onPressed: (){}, icon: Icon(Icons.search), color: Colors.black, iconSize: 40,),
+            IconButton(onPressed: (){}, icon: Icon(Icons.notifications_none_outlined), color: Colors.black, iconSize: 40,),
+          ],
+          backgroundColor: Colors.white,
+        ),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              floating: true,
+              snap: true,
+              expandedHeight: 300.0,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(1.0),
+                      padding: const EdgeInsets.all(1.0),
+                      child:
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  border: Border.all(color: Colors.black12, width: 3),
+                                  image: DecorationImage(
+                                    image: AssetImage('2people.png'),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.all(10.0),
+                                width: 100,
+                                child: Text("모임 둘러보기",
+                                  style: TextStyle(
+                                    fontSize: 17.0,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w200,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )
+                            ],
+                          ),
+
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            width: 2,
+                            height: 130,
+                            color: Colors.black12,
+                          ),
+
+                          Column(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(top: 10),
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  image: DecorationImage(
+                                    image: AssetImage('running.jpeg'),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(top: 10),
+                                width: 100,
+                                child: Text("양재천 같이 달려요",
+                                  style: TextStyle(
+                                    fontSize: 17.0,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w200,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(top: 10),
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  image: DecorationImage(
+                                    image: AssetImage('tennis_racket.webp'),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(top: 10),
+                                width: 100,
+                                child: Text("테니스 치는 사람들",
+                                  style: TextStyle(
+                                    fontSize: 17.0,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w200,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(top: 10),
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  image: DecorationImage(
+                                    image: AssetImage('baby.webp'),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(top: 10),
+                                width: 120,
+                                child: Text("22년생 호랑이 육아맘 소통",
+                                  style: TextStyle(
+                                    fontSize: 17.0,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w200,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 20),
+                      height: 7.0,
+                      width: double.infinity,
+                      color: Colors.black12,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                  // Replace the return statement with your desired widgets
+                  return Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        //alignment: Alignment.topLeft,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(20,20,20,0),
+
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.all(8),
+                                        padding: EdgeInsets.all(3),
+                                        color: Colors.black12,
+                                        child: Text(' 동네맛집 ', style: TextStyle( fontWeight: FontWeight.w400, fontSize: 14)),
+                                      ),
+                                      Text('강남역 자취 10년차의 맛집 리스트', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                                      Text('저만 알고 싶은 맛집 리스트 공유해요!', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black54)),
+
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(20,20,20,0),
+                                  margin: const EdgeInsets.fromLTRB(0, 10, 16, 0),
+                                  width: 110,
+                                  height: 110,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: DecorationImage(
+                                      image: AssetImage('bob.jpeg'),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(20,10,10,0),
+                                  child: Text("역삼동 * 2분 전 * 조회 30"),
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(0,10,0,0),
+                                      child: IconButton(
+                                        icon: _isFavorite ? Icon(Icons.thumb_up_alt) : Icon(Icons.thumb_up_off_alt_outlined),
+                                        onPressed: (){
+                                        setState(() {
+                                          if(_isFavorite) {
+                                            _isFavoriteCounter -= 1;
+                                            _isFavorite = false;
+
+                                          } else{
+                                            _isFavoriteCounter += 1;
+                                            _isFavorite = true;
+                                          };
+
+                                        }
+                                        );
+                                      },
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(0,10,0,0),
+                                      child: Text('$_isFavoriteCounter'),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(0,10,0,0),
+                                      child: IconButton(onPressed: (){}, icon: Icon(Icons.mode_comment_outlined), color: Colors.black,),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(0,10,20,0),
+                                      child: Text("24"),
+                                    ),
+
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      Container(
+                        margin: EdgeInsets.only(top: 5),
+                        height: 3.0,
+                        width: double.infinity,
+                        color: Colors.black12,
+                      ),
+
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        //alignment: Alignment.topLeft,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(20,20,20,0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.all(8),
+                                        padding: EdgeInsets.all(3),
+                                        color: Colors.black12,
+                                        child: Text(' 모임 ', style: TextStyle( fontWeight: FontWeight.w400, fontSize: 14)),
+                                      ),
+                                      Text('이번주 클라이밍 하러 가실분', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                                      Text('토요일 저녁에 도장깨기 하러가요. 초보자 환영!', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black54)),
+
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(20,20,20,0),
+                                  margin: const EdgeInsets.fromLTRB(0, 10, 16, 0),
+                                  width: 110,
+                                  height: 110,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: DecorationImage(
+                                      image: AssetImage('climbing.jpeg'),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(20,10,10,0),
+                                  child: Text("역삼동 * 5분 전 * 조회 30"),
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(0,10,0,0),
+                                      child: IconButton(onPressed: (){}, icon: Icon(Icons.people_outline), color: Colors.black,),
+                                    ),
+
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(0,10,20,0),
+                                      child: Text(" 3 / 6 명"),
+                                    ),
+
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      Container(
+                        margin: EdgeInsets.only(top: 5),
+                        height: 3.0,
+                        width: double.infinity,
+                        color: Colors.black12,
+                      ),
+
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        //alignment: Alignment.topLeft,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(20,20,20,0),
+                                  margin: const EdgeInsets.fromLTRB(20, 10, 16, 0),
+                                  width: 180,
+                                  height: 110,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: DecorationImage(
+                                      image: AssetImage('restaurant.jpeg'),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(20,20,20,0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('평일 홀서빙 알바 구해요', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                                      Text('우리동네가게 * 당근알바', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black54)),
+                                      Text('시급 11,000원', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),)
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(20,10,10,0),
+                                  child: Text("역삼동 * 5분 전 * 조회 30"),
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(0,10,0,0),
+                                      child: IconButton(onPressed: (){}, icon: Icon(Icons.people_outline), color: Colors.black,),
+                                    ),
+
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(0,10,20,0),
+                                      child: Text(" 3 / 6 명"),
+                                    ),
+
+                                  ],
+                                ),
+                              ],
+                            ),
+
+                            Container(
+                              margin: EdgeInsets.only(top: 5),
+                              height: 3.0,
+                              width: double.infinity,
+                              color: Colors.black12,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+
+                  );
+                },
+                childCount: 3, // Number of items
+              ),
+            ),
+          ],
+        ),
+
+
+        floatingActionButton : SizedBox(
+          width: 70,
+          height: 70,
+          child: FloatingActionButton(
+            elevation: 8,
+            shape: CircleBorder(),
+            onPressed: () {
+            },
+            backgroundColor: Colors.orange,
+            child  : const Icon(Icons.add, size: 50,color: Colors.white,),
+          ),
+        ),
+
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.white,
+          surfaceTintColor: Colors.white,
+          child: Container(
+            color: Colors.white,
+            height: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  icon: _isHomeBorder ? Icon(Icons.home_filled,color: Colors.black, size: 40,) : Icon(Icons.home_outlined,color: Colors.black, size: 40,),
+                  onPressed: () {
+                    setState(() {
+                      _isHomeBorder = true;
+                      _isArticleBorder = false;
+                      _isWhereBorder = false;
+                      _isQuestionBorder = false;
+                      _isPersonBorder = false;
+                    });
+                  },
+                ),
+                IconButton(
+                  icon: _isArticleBorder ? Icon(Icons.article,color: Colors.black, size: 40,) : Icon(Icons.article_outlined,color: Colors.black, size: 40,),
+                  onPressed: () {
+                    setState(() {
+                      _isHomeBorder = false;
+                      _isArticleBorder = true;
+                      _isWhereBorder = false;
+                      _isQuestionBorder = false;
+                      _isPersonBorder = false;
+                    });
+                  },
+                ),
+                IconButton(
+                  icon: _isWhereBorder ? Icon(Icons.where_to_vote,color: Colors.black, size: 40,) : Icon(Icons.where_to_vote_outlined,color: Colors.black, size: 40,),
+                  onPressed: () {
+                    setState(() {
+                      _isHomeBorder = false;
+                      _isArticleBorder = false;
+                      _isWhereBorder = true;
+                      _isQuestionBorder = false;
+                      _isPersonBorder = false;
+                    });
+                  },
+                ),
+                IconButton(
+                  icon: _isQuestionBorder ? Icon(Icons.question_answer,color: Colors.black, size: 40,) : Icon(Icons.question_answer_outlined,color: Colors.black, size: 40,),
+                  onPressed: () {
+                    setState(() {
+                      _isHomeBorder = false;
+                      _isArticleBorder = false;
+                      _isWhereBorder = false;
+                      _isQuestionBorder = true;
+                      _isPersonBorder = false;
+                    });
+                  },
+                ),
+                IconButton(
+                  icon: _isPersonBorder ? Icon(Icons.person,color: Colors.black, size: 40,) : Icon(Icons.person_outline,color: Colors.black, size: 40,),
+                  onPressed: () {
+                    setState(() {
+                      _isHomeBorder = false;
+                      _isArticleBorder = false;
+                      _isWhereBorder = false;
+                      _isQuestionBorder = false;
+                      _isPersonBorder = true;
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
